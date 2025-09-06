@@ -9,7 +9,7 @@ export class Post {
   title: string;
 
   @Prop()
-  description: number;
+  description: string;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);

@@ -8,7 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [
     PostModule,
     MongooseModule.forRoot(
-      'mongodb+srv://@postcluster.vcbs7se.mongodb.net/?retryWrites=true&w=majority&appName=PostCluster',
+      'mongodb+srv://@postcluster.vcbs7se.mongodb.net/post_db?retryWrites=true&w=majority&appName=PostCluster',
     ),
   ],
   controllers: [AppController],
