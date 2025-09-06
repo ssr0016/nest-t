@@ -10,15 +10,12 @@ export class PostService {
 
   async create(createPostDto: CreatePostDto) {
     const createdPost = new this.postModel(createPostDto);
-
     const post = await createdPost.save(); // real entity
-
     return post;
   }
 
   async getAll() {
     const posts = await this.postModel.find();
-
     return posts;
   }
 }

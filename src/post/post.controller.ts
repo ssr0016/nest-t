@@ -1,10 +1,11 @@
-import { Controller, Post, Body, Get, UseInterceptors } from '@nestjs/common';
-import { TransformDtoInterceptor } from 'src/interceptors/transform-dto.interceptors';
+import { Controller, Post, Body, Get } from '@nestjs/common';
+import { TransformDTO } from 'src/interceptors/transform-dto.interceptor';
 import { CreatePostDto } from 'src/post/dtos/create-post.dto';
+import { ResponsePostDto } from 'src/post/dtos/response-post.dto';
 import { PostService } from 'src/post/post.service';
 
 @Controller('posts') // REST
-@UseInterceptors(TransformDtoInterceptor)
+@TransformDTO(ResponsePostDto)
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
