@@ -1,17 +1,18 @@
-import { Controller, Post, Body, Get, Param, Put } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put, Patch } from '@nestjs/common';
 import { TransformDTO } from 'src/interceptors/transform-dto.interceptor';
-import { CreatePostDto } from 'src/post/dtos/create-post.dto';
-import { ResponsePostDto } from 'src/post/dtos/response-post.dto';
-import { UpdatePostDto } from 'src/post/dtos/update-post.dto';
+import { CreatePostDTO } from 'src/post/dtos/create-post.dto';
+import { ResponsePostDTO } from 'src/post/dtos/response-post.dto';
+import { UpdatePostPatchDTO } from 'src/post/dtos/update-post-patch.dto';
+import { UpdatePostDTO } from 'src/post/dtos/update-post.dto';
 import { PostService } from 'src/post/post.service';
 
 @Controller('posts')
-@TransformDTO(ResponsePostDto)
+@TransformDTO(ResponsePostDTO)
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
   @Post()
-  create(@Body() requestBody: CreatePostDto) {
+  create(@Body() requestBody: CreatePostDTO) {
     return this.postService.create(requestBody);
   }
 
@@ -25,8 +26,16 @@ export class PostController {
     return this.postService.getOne(id);
   }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() requestBody: UpdatePostDto) {
+  @Put(':id') // update all fields (PUT)
+  async update(@Param('id') id: string, @Body() requestBody: UpdatePostDTO) {
     return this.postService.update(id, requestBody);
+  }
+
+  @Patch(':id') // update partial or one field (PATCH)
+  async updateOne(
+    @Param('id') id: string,
+    @Body() requestBody: UpdatePostPatchDTO,
+  ) {
+    return this.postService.updateOne(id, requestBody);
   }
 }
