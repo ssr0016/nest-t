@@ -3,13 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostModule } from './post/post.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     PostModule,
     MongooseModule.forRoot(
-      'mongodb+srv://@postcluster.vcbs7se.mongodb.net/post_db?retryWrites=true&w=majority&appName=PostCluster',
+      'mongodb+srv://ssr0016:ssr0016@postcluster.vcbs7se.mongodb.net/post_db?retryWrites=true&w=majority&appName=PostCluster',
     ),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
