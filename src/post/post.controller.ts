@@ -1,4 +1,13 @@
-import { Controller, Post, Body, Get, Param, Put, Patch } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Put,
+  Patch,
+  Delete,
+} from '@nestjs/common';
 import { TransformDTO } from 'src/interceptors/transform-dto.interceptor';
 import { CreatePostDTO } from 'src/post/dtos/create-post.dto';
 import { ResponsePostDTO } from 'src/post/dtos/response-post.dto';
@@ -22,20 +31,22 @@ export class PostController {
   }
 
   @Get('/:id')
-  async getOne(@Param('id') id: string) {
+  getOne(@Param('id') id: string) {
     return this.postService.getOne(id);
   }
 
   @Put(':id') // update all fields (PUT)
-  async update(@Param('id') id: string, @Body() requestBody: UpdatePostDTO) {
+  update(@Param('id') id: string, @Body() requestBody: UpdatePostDTO) {
     return this.postService.update(id, requestBody);
   }
 
   @Patch(':id') // update partial or one field (PATCH)
-  async updateOne(
-    @Param('id') id: string,
-    @Body() requestBody: UpdatePostPatchDTO,
-  ) {
+  updateOne(@Param('id') id: string, @Body() requestBody: UpdatePostPatchDTO) {
     return this.postService.updateOne(id, requestBody);
+  }
+
+  @Delete(':id')
+  deleteOne(@Param('id') id: string) {
+    return this.postService.deleteOne(id);
   }
 }

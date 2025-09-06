@@ -47,4 +47,10 @@ export class PostService {
 
     return post.save();
   }
+
+  async deleteOne(id: string) {
+    await this.getOne(id);
+
+    await this.postModel.deleteOne({ _id: id });
+  }
 }
