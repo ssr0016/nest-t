@@ -11,7 +11,7 @@ export class PostService {
 
   async create(createPostDto: CreatePostDto): Promise<ResponsePostDto> {
     const createdPost = new this.postModel(createPostDto);
-    const post = await createdPost.save();
+    const post = await createdPost.save(); // real entity
 
     const postDto = new ResponsePostDto();
     postDto._id = post._id.toString();
@@ -19,5 +19,17 @@ export class PostService {
     postDto.description = post.description;
 
     return postDto;
+  }
+
+  async getAll(): Promise<ResponsePostDto[]> {
+    const posts = await this.postModel.find();
+
+    return posts.map((post) => {
+      return {
+        _id: post._id.toString(),
+        title: post.title,
+        description: post.description,
+      } as ResponsePostDto;
+    });
   }
 }
