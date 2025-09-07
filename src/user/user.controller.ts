@@ -1,4 +1,18 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
+import { TransformDTO } from 'src/interceptors/transform-dto.interceptor';
+import { CreatePostDTO } from 'src/post/dtos/create-post.dto';
+import { ResponsePostDTO } from 'src/post/dtos/response-post.dto';
 
-@Controller('user')
-export class UserController {}
+@Controller('users')
+@TransformDTO(ResponsePostDTO)
+export class UserController {
+  @Post()
+  create(@Body() requestBody: CreatePostDTO) {
+    return 'post';
+  }
+
+  @Get()
+  getAll() {
+    return 'get';
+  }
+}
