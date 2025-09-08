@@ -10,7 +10,7 @@ import { HealthModule } from './health/health.module';
   imports: [
     PostModule,
     MongooseModule.forRoot(
-      'mongodb+srv://@postcluster.vcbs7se.mongodb.net/post_db?retryWrites=true&w=majority&appName=PostCluster',
+      'mongodb+srv://postcluster.vcbs7se.mongodb.net/post_db?retryWrites=true&w=majority&appName=PostCluster',
     ),
     UserModule,
     HealthModule,
