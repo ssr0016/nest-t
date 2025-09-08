@@ -6,7 +6,8 @@
 # npm install --save @nestjs/swagger
 # npm install --save @nestjs/terminus
 # npm i --save @nestjs/axios axios
-
+# npm i -D @compodoc/compodoc
+# npx @compodoc/compodoc -p tsconfig.json -s
 
 ### Inject another module
 # 1) exports: [Service]
