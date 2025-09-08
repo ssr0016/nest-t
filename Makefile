@@ -4,6 +4,9 @@
 # npm i --save class-validator class-transformer
 # npm i @nestjs/swagger
 # npm install --save @nestjs/swagger
+# npm install --save @nestjs/terminus
+# npm i --save @nestjs/axios axios
+
 
 ### Inject another module
 # 1) exports: [Service]
